@@ -5,12 +5,7 @@ import { NgModule } from "@angular/core";
 const COMPARE_SHEETS_ROUTES: Routes = [
     {
         path: '',
-        children: [
-            {
-                path: '',
-                component: CompareSheetsComponent
-            }
-        ]
+        children: [{ path: '', component: CompareSheetsComponent }]
     }
 ];
 
