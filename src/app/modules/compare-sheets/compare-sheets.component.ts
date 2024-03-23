@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, Injector, OnInit, ViewChild } from '@angular/core';
+import { Validators } from '@angular/forms';
+import { AbstractComponent } from '../../core/components/abstract.component';
+import { InputFileCsvComponent } from '../../shared/components/input-file-csv/input-file-csv.component';
 
 @Component({
   selector: 'compare-sheets',
   templateUrl: './compare-sheets.component.html'
 })
-export class CompareSheetsComponent implements OnInit {
+export class CompareSheetsComponent extends AbstractComponent implements OnInit {
 
-  formGroup!: FormGroup;
+  @ViewChild(InputFileCsvComponent) inputFileCsvDelete!: InputFileCsvComponent;
+  @ViewChild(InputFileCsvComponent) inputFileCsvBase!: InputFileCsvComponent;
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) { }
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   ngOnInit(): void {
     this.createForm();
@@ -21,36 +24,22 @@ export class CompareSheetsComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       fileToDelete: [null, Validators.required],
       fileBase: [null, Validators.required]
-    })
+    });
   }
 
   onSave() {
-    console.log(this.formGroup.value);
-    console.log('colectForm');
-    const { fileBase } = this.formGroup.value;
-    console.log(this.colectFormDataFromEvent(fileBase));
+    const { fileToDelete, fileBase } = this.formGroup.value;
+    /*
+    pronto para fazer a requisição imagino eu :)
+
+     */
   }
 
-  onFileDeleteSelected(event: any) {
-    const formData = this.colectFormDataFromEvent(event);
-    //this.formGroup.patchValue({ fileToDelete: formData });
+  onSelectDelete(event: FormData) {
+    this.formGroup.patchValue({ fileToDelete: event });
   }
 
-  onFileBaseSelected(event: any) {
-    const formData = this.colectFormDataFromEvent(event);
-    //this.formGroup.patchValue({ fileBase: formData });
+  onSelectBase(event: FormData) {
+    this.formGroup.patchValue({ fileBase: event });
   }
-
-  colectFormDataFromEvent(event: any): FormData {
-    const selectedFile = <FileList>event.srcElement.files;
-    const formData = new FormData();
-
-    if (selectedFile.length > 0) {
-      console.log(selectedFile[0].type);
-      formData.append('file', selectedFile[0], selectedFile[0].name);
-    }
-
-    return formData;
-  }
-
 }

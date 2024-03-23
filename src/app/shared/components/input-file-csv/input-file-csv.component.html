@@ -1,6 +1,6 @@
 <div class="flex items-center justify-center">
   <div class="flex items-center justify-center w-80 mt-1">
-    <label for="file-base"
+    <label [for]="myId"
       class="flex flex-col items-center justify-center w-full h-48 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
       <div class="flex flex-col items-center justify-center pt-5 pb-6">
         <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,7 @@
         </p>
         <p class="text-xs text-gray-500 dark:text-gray-200">SVG apenas</p>
       </div>
-      <input id="file-base" type="file" class="hidden" (change)="onFileSelected($event)" />
+      <input [id]="myId" type="file" class="hidden" (change)="onFileSelected($event)" />
     </label>
   </div>
 </div>

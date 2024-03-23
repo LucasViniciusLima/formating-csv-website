@@ -1,4 +1,4 @@
-import { Component, Injector } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, Output } from '@angular/core';
 import { AbstractComponent } from '../../../core/components/abstract.component';
 
 @Component({
@@ -7,6 +7,8 @@ import { AbstractComponent } from '../../../core/components/abstract.component';
 })
 export class InputFileCsvComponent extends AbstractComponent {
 
+  @Input() public myId!: string;
+  @Output('onSelect') onSelectFileEmitter = new EventEmitter<any>();
 
   constructor(injector: Injector) {
     super(injector);
@@ -17,11 +19,11 @@ export class InputFileCsvComponent extends AbstractComponent {
     const formData = new FormData();
 
     if (selectedFile.length > 0) {
-      console.log(selectedFile[0].type);
+      //console.log(selectedFile[0].type);
       formData.append('file', selectedFile[0], selectedFile[0].name);
     }
 
-    ///this.formGroup.patchValue({ file: formData }); send tho element father
+    this.onSelectFileEmitter.emit(formData);
   }
 
 }
