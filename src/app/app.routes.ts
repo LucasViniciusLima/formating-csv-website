@@ -6,6 +6,6 @@ export const routes: Routes = [
     },
     {
         path: 'compare-sheets',
-        loadChildren: () => import('./compare-sheets/compare-sheets.module').then(m => m.CompareSheetsModule)
+        loadChildren: () => import('./modules/compare-sheets/compare-sheets.module').then(m => m.CompareSheetsModule)
     }
 ];

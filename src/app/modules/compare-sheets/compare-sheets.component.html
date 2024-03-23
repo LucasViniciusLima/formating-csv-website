@@ -1,0 +1,25 @@
+<div class="p-2 border border-2 border-lime-700 rounded-lg mx-1 sm:mx-auto mt-5 sm:p-5">
+  <h2 class="text-xl text-center font-semibold my-3">
+    Remova valores específicos de uma planilha em uma planilha alvo
+  </h2>
+  <form [formGroup]="formGroup" #f="ngForm">
+    <div class="text-center p-2 grid grid-cols-2 gap-2 sm:p-5">
+
+      <div class="p-3 bg-gray-100 mx-1 rounded-lg">
+        <label class="text-sm sm:text-lg font-semibold">Dados a remover</label>
+        <input-file-csv></input-file-csv>
+      </div>
+
+      <div class="p-3 bg-gray-100 mx-1 rounded-lg">
+        <label class="text-sm sm:text-lg font-semibold">Planilha base</label>
+        <input-file-csv></input-file-csv>
+      </div>
+
+      <button class="col-span-2 w-full p-3 text-white font-semibold mx-1 rounded-lg"
+        [ngClass]="{ 'bg-gray-400': formGroup.invalid, 'bg-lime-600 hover:bg-lime-700': formGroup.valid }" type="button"
+        (click)="onSave()" [disabled]="formGroup.invalid">
+        Formatar
+      </button>
+    </div>
+  </form>
+</div>
